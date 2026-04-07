@@ -1,5 +1,7 @@
+## Diagrama de Classes - Sistema de Eventos
+
+```mermaid
 classDiagram
-    %% Hierarquia de Usuários
     class Usuario {
         <<Abstract>>
         +String nome
@@ -12,19 +14,25 @@ classDiagram
     }
 
     class Professor {
-        +String titulacao
+        +String departamento
     }
 
     class Organizador {
-        +registrarPresenca(inscricao: Inscricao)
+        +registrarPresenca(Inscricao inscricao)
     }
 
-    %% Entidades Principais
     class Evento {
         +String titulo
-        +Date data
+        +DateTime data
         +int cargaHoraria
         +int limiteVagas
+    }
+
+    class Inscricao {
+        +DateTime dataInscricao
+        +StatusInscricao status
+        +boolean presencaConfirmada
+        +gerarCertificado()
     }
 
     class Palestrante {
@@ -32,26 +40,18 @@ classDiagram
         +String miniCurriculo
     }
 
-    %% Classe de Associação / Relacional
-    class Inscricao {
-        +Date dataInscricao
-        +StatusInscricao status
-        +boolean presencaConfirmada
-        +gerarCertificado()
-    }
-
     class StatusInscricao {
-        <<enumeration>>
+        <<Enumeration>>
         PENDENTE
         CONFIRMADA
     }
 
     %% Relacionamentos
-    Usuario <|-- Aluno : é um
-    Usuario <|-- Professor : é um
-    Usuario <|-- Organizador : é um
+    Usuario <|-- Aluno
+    Usuario <|-- Professor
+    Usuario <|-- Organizador
 
-    Usuario "1" -- "0..*" Inscricao : realiza
-    Evento "1" -- "0..*" Inscricao : recebe
-    Evento "*" -- "1..*" Palestrante : possui
-    Inscricao .. StatusInscricao : usa
+    Usuario "1" -- "0..*" Inscricao
+    Evento "1" -- "0..*" Inscricao
+    Evento "*" -- "1..*" Palestrante
+    Inscricao .. StatusInscricao
