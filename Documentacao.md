@@ -1,13 +1,13 @@
 
-#Objetivo:
+# Objetivo:
 Documentar o fluxo de processo para manipulação de um pedido, conforme o diagrama fornecido. Este diagrama modela as atividades envolvidas desde o recebimento do pedido até o seu fechamento, com foco especial no processamento paralelo de faturamento e entrega.
 
 
-#Descrição Visual do Fluxo:
+# Descrição Visual do Fluxo:
 
 O diagrama é um Diagrama de Atividades UML que utiliza um nó de controle Fork e um nó de controle Join para gerenciar o paralelismo.
 
-*Início: Começa no nó inicial (círculo preto).
+* Início: Começa no nó inicial (círculo preto).
 
 Atividade 1 (Linear): A primeira atividade é Receber Pedido.
 
@@ -23,7 +23,7 @@ Atividade Final (Linear): Após o Join, a última atividade é Fechar Pedido.
 
 Fim: Termina no nó final (círculo preto com contorno).
 
-*Requisitos de Implementação/Documentação
+* Requisitos de Implementação/Documentação
 Utilizar exatamente esta lógica de negócios.
 
 Garantir que os caminhos de Faturamento e Entrega possam ser processados de forma assíncrona/paralela.
